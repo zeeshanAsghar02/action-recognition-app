@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-powered action recognition from images using deep learning">
+    <meta name="author" content="Muhammad Zeeshan">
+    <title>🎬 Action Recognition - AI Powered</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🎬 Action Recognition</h1>
+            <p class="subtitle">Upload an image to predict the action using AI</p>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Upload Section -->
+            <section class="upload-section">
+                <div class="upload-box">
+                    <input 
+                        type="file" 
+                        id="imageInput" 
+                        accept="image/jpeg,image/jpg" 
+                        hidden
+                    >
+                    <label for="imageInput" class="upload-label">
+                        <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                        </svg>
+                        <span class="upload-text">Click to upload image</span>
+                        <span class="upload-hint">JPG/JPEG only (max 10MB)</span>
+                    </label>
+                </div>
+
+                <!-- Image Preview -->
+                <div id="imagePreview" class="image-preview hidden">
+                    <img id="previewImg" src="" alt="Preview">
+                    <button id="removeImage" class="remove-btn" title="Remove image">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Predict Button -->
+                <button id="predictBtn" class="predict-btn hidden" disabled>
+                    <span class="btn-text">Predict Action</span>
+                    <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </button>
+            </section>
+
+            <!-- Results Section -->
+            <section id="resultsSection" class="results-section hidden">
+                <div class="results-card">
+                    <h2 class="results-title">Prediction Results</h2>
+                    
+                    <div class="result-item">
+                        <label>Predicted Action:</label>
+                        <div id="predictedAction" class="result-value">
+                            -
+                        </div>
+                    </div>
+
+                    <div class="result-item">
+                        <label>Confidence:</label>
+                        <div class="confidence-wrapper">
+                            <div id="confidenceScore" class="result-value">
+                                -
+                            </div>
+                            <div class="confidence-bar">
+                                <div id="confidenceProgress" class="confidence-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Loading Spinner -->
+            <div id="loadingSpinner" class="loading-spinner hidden">
+                <div class="spinner"></div>
+                <p>Processing image...</p>
+            </div>
+
+            <!-- Error Message -->
+            <div id="errorMessage" class="error-message hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span id="errorText">An error occurred</span>
+            </div>
+        </main>
+
+        <!-- Supported Actions Section -->
+        <section class="supported-actions">
+            <h2 class="actions-title">📋 Supported Actions (40 Classes)</h2>
+            <p class="actions-description">Our AI model can recognize the following human actions in images:</p>
+            <div class="actions-grid">
+                <div class="action-item">1. Applauding</div>
+                <div class="action-item">2. Blowing Bubbles</div>
+                <div class="action-item">3. Brushing Teeth</div>
+                <div class="action-item">4. Cleaning The Floor</div>
+                <div class="action-item">5. Climbing</div>
+                <div class="action-item">6. Cooking</div>
+                <div class="action-item">7. Cutting Trees</div>
+                <div class="action-item">8. Cutting Vegetables</div>
+                <div class="action-item">9. Drinking</div>
+                <div class="action-item">10. Feeding A Horse</div>
+                <div class="action-item">11. Fishing</div>
+                <div class="action-item">12. Fixing A Bike</div>
+                <div class="action-item">13. Fixing A Car</div>
+                <div class="action-item">14. Gardening</div>
+                <div class="action-item">15. Holding An Umbrella</div>
+                <div class="action-item">16. Jumping</div>
+                <div class="action-item">17. Looking Through A Microscope</div>
+                <div class="action-item">18. Looking Through A Telescope</div>
+                <div class="action-item">19. Phoning</div>
+                <div class="action-item">20. Playing Guitar</div>
+                <div class="action-item">21. Playing Violin</div>
+                <div class="action-item">22. Pouring Liquid</div>
+                <div class="action-item">23. Pushing A Cart</div>
+                <div class="action-item">24. Reading</div>
+                <div class="action-item">25. Riding A Bike</div>
+                <div class="action-item">26. Riding A Horse</div>
+                <div class="action-item">27. Rowing A Boat</div>
+                <div class="action-item">28. Running</div>
+                <div class="action-item">29. Shooting An Arrow</div>
+                <div class="action-item">30. Smoking</div>
+                <div class="action-item">31. Taking Photos</div>
+                <div class="action-item">32. Texting Message</div>
+                <div class="action-item">33. Throwing Frisby</div>
+                <div class="action-item">34. Using A Computer</div>
+                <div class="action-item">35. Walking The Dog</div>
+                <div class="action-item">36. Washing Dishes</div>
+                <div class="action-item">37. Watching TV</div>
+                <div class="action-item">38. Waving Hands</div>
+                <div class="action-item">39. Writing On A Board</div>
+                <div class="action-item">40. Writing On A Book</div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>Powered by CNN + LSTM Deep Learning Model</p>
+            <p class="footer-info">ResNet50 + LSTM Architecture • 40 Action Classes</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
