@@ -9,9 +9,25 @@
 
 **A modern full-stack web application for recognizing human actions in images using deep learning**
 
+**Deep Learning Assignment 04 - Muhammad Zeeshan (221360)**
+
 [Features](#-features) • [Demo](#-demo) • [Installation](#-installation) • [Usage](#-usage) • [API](#-api-documentation) • [Deployment](#-deployment)
 
 </div>
+
+---
+
+## 🎓 Assignment Overview
+
+This project fulfills the requirements of the Deep Learning course assignment:
+
+✅ **CNN + LSTM Models** - Hybrid architecture for action recognition  
+✅ **Image Annotation** - Recognizes and labels actions in images  
+✅ **Frontend Integration** - Modern web interface for easy interaction  
+✅ **GitHub Deployment** - Complete codebase with documentation  
+✅ **Sample Images** - Test images provided in `sample_images/` folder  
+✅ **REST API** - FastAPI-based communication between frontend and model  
+✅ **40 Action Classes** - Trained on comprehensive action dataset  
 
 ---
 
@@ -145,6 +161,11 @@ source venv/bin/activate
 pip install fastapi uvicorn python-multipart pillow torch torchvision
 ```
 
+**Or use requirements.txt:**
+```bash
+pip install -r requirements.txt
+```
+
 **Required packages:**
 - `fastapi` - Modern web framework for building APIs
 - `uvicorn` - ASGI server for running FastAPI
@@ -153,7 +174,18 @@ pip install fastapi uvicorn python-multipart pillow torch torchvision
 - `torch` - PyTorch deep learning framework
 - `torchvision` - Computer vision utilities and pre-trained models
 
-### 4️⃣ Verify Installation
+### 4️⃣ Download Pre-trained Model
+
+⚠️ **Important:** The model file is 110MB and not included in the repository due to GitHub's file size limits.
+
+**Option 1: Use Your Trained Model**
+- Place your trained `cnn_lstm_action_model.pth` file in the `backend/` folder
+
+**Option 2: Contact for Model Access**
+- The pre-trained model can be provided separately
+- Contact: [Your Contact Information]
+
+### 5️⃣ Verify Installation
 
 ```bash
 python -c "import torch; import fastapi; print('✅ All dependencies installed successfully!')"
