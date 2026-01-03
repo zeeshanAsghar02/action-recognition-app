@@ -27,6 +27,9 @@ wheels/
 *.pth.tar
 *.ckpt
 
+# Large model files (download separately)
+backend/cnn_lstm_action_model.pth
+
 # Jupyter Notebook
 .ipynb_checkpoints
 *.ipynb
